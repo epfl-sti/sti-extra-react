@@ -1,0 +1,44 @@
+.dygraph-title { 
+    text-align: center;
+    background: none;
+    color: #444;
+    line-height: 0em;
+    margin-top: -2px;
+ }
+
+ .dygraph-legend { 
+    text-align: right ! important;
+    font-size: 0.7em ! important;
+    background: none; 
+ }
+
+ .dygraph-axis-label{
+     font-size: 0.9em;
+ }
+ 
+ .dygraph-axis-label-y {
+     padding-right: 8px;
+ }
+ .dygraph-axis-label-x {
+     padding-top: 8px;
+     padding-left: 8px;
+ }
+ 
+ .dygraph-legend-line {
+     font-size: 0.9em;
+ }
+ 
+ #labelsdiv {
+     font-size: 0.9em;
+ }
+
+.dygraph-annotation {
+    position: absolute;
+    z-index: 1000000;
+    overflow: hidden;
+    color: #333 ! important;
+    width: 300px ! important;
+    margin-top: -4px;
+    margin-left: 4px;
+    text-shadow: 0 1px 0 #aaa;
+}
