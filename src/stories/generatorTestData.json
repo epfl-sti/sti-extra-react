@@ -1,0 +1,112 @@
+[
+    {
+        "Rank": "1.",
+        "Rating": "79%",
+        "Title": "It Happened One Night",
+        "No. of Reviews": "98",
+        "Genre": "Romance, Comedy",
+        "Original Language": "English",
+        "Director": "FrankCapra",
+        "Release Date (Streaming)": "Dec28, 1999",
+        "Runtime": "1h45m"
+    },
+    {
+        "Rank": "2.",
+        "Rating": "83%",
+        "Title": "Citizen Kane",
+        "No. of Reviews": "121",
+        "Genre": "Drama",
+        "Original Language": "English",
+        "Director": "OrsonWelles",
+        "Release Date (Streaming)": "Feb23, 2010",
+        "Runtime": "1h59m"
+    },
+    {
+        "Rank": "3.",
+        "Rating": "92%",
+        "Title": "The Wizard of Oz",
+        "No. of Reviews": "160",
+        "Genre": "Fantasy, Musical, Kids&family",
+        "Original Language": "English",
+        "Director": "VictorFleming",
+        "Release Date (Streaming)": "Aug12, 2003",
+        "Runtime": "1h41m"
+    },
+    {
+        "Rank": "4.",
+        "Rating": "100%",
+        "Title": "Modern Times",
+        "No. of Reviews": "109",
+        "Genre": "Comedy",
+        "Original Language": "English",
+        "Director": "CharlieChaplin",
+        "Release Date (Streaming)": "Nov16, 2010",
+        "Runtime": "1h29m"
+    },
+    {
+        "Rank": "5.",
+        "Rating": "90%",
+        "Title": "Black Panther",
+        "No. of Reviews": "525",
+        "Genre": "Action, Fantasy, Adventure",
+        "Original Language": "English",
+        "Director": "RyanCoogler",
+        "Release Date (Streaming)": "May2, 2018",
+        "Runtime": "2h14m"
+    },
+    {
+        "Rank": "6.",
+        "Rating": "89%",
+        "Title": "Parasite (Gisaengchung)",
+        "No. of Reviews": "464",
+        "Genre": "Drama, Mystery&thriller, Comedy",
+        "Original Language": "Korean",
+        "Director": "BongJoonHo",
+        "Release Date (Streaming)": "Oct11, 2019",
+        "Runtime": "2h12m"
+    },
+    {
+        "Rank": "7.",
+        "Rating": "82%",
+        "Title": "Avengers: Endgame",
+        "No. of Reviews": "547",
+        "Genre": "Action, Sci-fi, Fantasy, Adventure",
+        "Original Language": "English",
+        "Director": "AnthonyRusso, JoeRusso",
+        "Release Date (Streaming)": "Jul30, 2019",
+        "Runtime": "3h1m"
+    },
+    {
+        "Rank": "8.",
+        "Rating": "96%",
+        "Title": "Casablanca",
+        "No. of Reviews": "124",
+        "Genre": "Drama",
+        "Original Language": "English",
+        "Director": "MichaelCurtiz",
+        "Release Date (Streaming)": "Nov17, 1998",
+        "Runtime": "1h42m"
+    },
+    {
+        "Rank": "9.",
+        "Rating": "82%",
+        "Title": "Knives Out",
+        "No. of Reviews": "468",
+        "Genre": "Crime, Drama, Mystery&thriller, Comedy",
+        "Original Language": "English",
+        "Director": "RianJohnson",
+        "Release Date (Streaming)": "Jun12, 2020",
+        "Runtime": "2h10m"
+    },
+    {
+        "Rank": "10.",
+        "Rating": "52%",
+        "Title": "Us",
+        "No. of Reviews": "553",
+        "Genre": "Horror, Mystery&thriller",
+        "Original Language": "English",
+        "Director": "JordanPeele",
+        "Release Date (Streaming)": "Jun4, 2019",
+        "Runtime": "1h56m"
+    }
+]
