@@ -25,6 +25,9 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
     plotlyCdnSource || 'https://cdn.plot.ly/plotly-latest.min.js'
   );
 
+  console.log('PlotlyWrapper: extPlotlyLoaded', extPlotlyLoaded);
+  console.log('PlotlyWrapper: plotlyLoaded', plotlyLoaded);
+
   if (!plotlyLoaded) {
     plotlyLoaded = extPlotlyLoaded;
   }
