@@ -47,7 +47,7 @@ export function useExternalScript(src: string): boolean | undefined {
         script.removeEventListener('error', setStateFromEvent);
       }
     };
-  }, [src, status]);
+  }, [src]);
 
   return status;
 }
