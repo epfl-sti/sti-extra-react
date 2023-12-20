@@ -34,11 +34,11 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
   }
 
   const renderPlot = () => {
-    console.log('createPlotlyComponent', createPlotlyComponent);
+    console.log('createPlotlyComponent', createPlotlyComponent.default);
     console.log('Plotly', Plotly);
-    
+
     if (!Plot) {
-      Plot = createPlotlyComponent(Plotly);
+      Plot = createPlotlyComponent.default(Plotly);
     }
     const { data, layout } = jsonData;
 
