@@ -1,12 +1,10 @@
 import { ChangeEvent } from 'react';
-import { useExternalScript } from '../../utils/useExternalScript';
 import '../common/styles.css'
+//@ts-expect-error - no types for xlsx
+import * as XLSX from 'xlsx/xlsx.mjs';
 
 import PropTypes from 'prop-types';
 import 'font-awesome/css/font-awesome.min.css';
-
-const defaultJszipJsSource = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.0/jszip.js";
-const defaultXlsxJsSource = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.0/xlsx.full.min.js";
 
 export interface XlsReaderProps {
     sheetName?: string;
@@ -14,8 +12,6 @@ export interface XlsReaderProps {
     arrayOfArrays?: boolean;
     callbackFn: (data: any) => void;
     labelString?: string;
-    xlsxJsSource?: string;
-    jszipJsSource?: string;
     fileReaderKey?: string;
   }
 
@@ -25,12 +21,8 @@ export function XlsReader({
     arrayOfArrays,
     callbackFn,
     labelString,
-    xlsxJsSource,
-    jszipJsSource,
     fileReaderKey,
   }: XlsReaderProps) {
-    const xlsxLoaded = useExternalScript(xlsxJsSource || defaultXlsxJsSource);
-    const jszipLoaded = useExternalScript(jszipJsSource || defaultJszipJsSource);
   
     function getOptions() {
       if (headerRow) {
@@ -70,14 +62,14 @@ export function XlsReader({
           key={fileReaderKey || 'filereader'}
           type='file'
           style={{ display: 'none' }}
-          accept='.xls,.xlsx'
+          accept='.xls,.xlsx,.xlsb'
           name='image'
           onChange={(e) => handleChangeFile(e)}
         />
       </label>
     );
   
-    return <div>{xlsxLoaded && jszipLoaded && getFileInputButton()}</div>;
+    return <div>{getFileInputButton()}</div>;
   }
   
   XlsReader.propTypes = {
@@ -86,7 +78,5 @@ export function XlsReader({
     arrayOfArrays: PropTypes.bool,
     callbackFn: PropTypes.func.isRequired,
     labelString: PropTypes.string,
-    xlsxJsSource: PropTypes.string,
-    jszipJsSource: PropTypes.string,
     fileReaderKey: PropTypes.string,
   };

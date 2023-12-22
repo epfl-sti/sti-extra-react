@@ -20,15 +20,13 @@ export const Default: Story = {
 export const CustomErrorHandler: Story = {
     args: {
       data: generatorTestData,
-      errorHandler: (err) => console.error(err)
+      errorHandler: (err: unknown) => console.error(err)
     }
   };
   
   export const OverrideXlsxAndJszipSources: Story = {
     args: {
       data: generatorTestData,
-      xlsxJsSource: "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js",
-      jszipJsSource: "https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"    
     }
   };
   

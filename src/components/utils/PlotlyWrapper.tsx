@@ -1,24 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { useExternalScript } from './useExternalScript';
-import Spinner from './spinner';
 import './plotlys.css';
 import Plot from 'react-plotly.js';
 
 interface PlotlyWrapperProps {
-  jsonData: object;
+  jsonData: {layout: any, data: any};
   bottomLegend?: string;
   relayOutHandler?: (e: any) => void;
   plotlyCdnSource?: string;
 }
 
-let plotlyLoaded: boolean;
 
 const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
   jsonData,
   bottomLegend,
   relayOutHandler,
-  plotlyCdnSource,
 }) => {
 
   const renderPlot = () => {
@@ -29,7 +24,8 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
 
       console.log('Plot:', Plot)
 
-      if (Plot.default) {
+      if ((Plot as any).default !== undefined) {
+        //@ts-expect-error import quirck
         return <Plot.default
         data={data}
         layout={layout}
@@ -41,7 +37,7 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
         config={{ displayModeBar: false }}
       />
       } else {
-        return <Plot.default
+        return <Plot
         data={data}
         layout={layout}
         onRelayout={(e: any) => {
@@ -76,11 +72,6 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
       {jsonData  && renderPlot()}
     </div>
   );
-};
-
-PlotlyWrapper.propTypes = {
-  jsonData: PropTypes.object,
-  plotlyCdnSource: PropTypes.string,
 };
 
 export default PlotlyWrapper;
