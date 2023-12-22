@@ -22,8 +22,6 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
 
     const getPlot = () => {
 
-      console.log('Plot:', Plot)
-
       if ((Plot as any).default !== undefined) {
         //@ts-expect-error import quirck
         return <Plot.default
