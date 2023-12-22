@@ -25,8 +25,11 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
 
     const { data, layout } = jsonData;
 
-    const getPlot = () => (
-      <Plot
+    const getPlot = () => {
+
+      console.log('Plot:', Plot)
+
+      return <Plot
         data={data}
         layout={layout}
         onRelayout={(e: any) => {
@@ -36,7 +39,7 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
         }}
         config={{ displayModeBar: false }}
       />
-    );
+    };
 
     return bottomLegend ? (
       <div>
