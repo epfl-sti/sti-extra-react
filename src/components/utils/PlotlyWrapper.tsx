@@ -29,7 +29,8 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
 
       console.log('Plot:', Plot)
 
-      return <Plot
+      if (Plot.default) {
+        return <Plot.default
         data={data}
         layout={layout}
         onRelayout={(e: any) => {
@@ -39,6 +40,21 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
         }}
         config={{ displayModeBar: false }}
       />
+      } else {
+        return <Plot.default
+        data={data}
+        layout={layout}
+        onRelayout={(e: any) => {
+          if (relayOutHandler) {
+            relayOutHandler(e);
+          }
+        }}
+        config={{ displayModeBar: false }}
+      />
+
+      }
+
+      
     };
 
     return bottomLegend ? (
