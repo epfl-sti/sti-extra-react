@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useExternalScript } from './useExternalScript';
-import createPlotlyComponent from 'react-plotly.js/factory';
 import Spinner from './spinner';
 import './plotlys.css';
+import Plot from 'react-plotly.js';
 
 interface PlotlyWrapperProps {
   jsonData: object;
@@ -12,7 +12,6 @@ interface PlotlyWrapperProps {
   plotlyCdnSource?: string;
 }
 
-let Plot: any;
 let plotlyLoaded: boolean;
 
 const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
@@ -34,15 +33,8 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
   }
 
   const renderPlot = () => {
-    console.log('createPlotlyComponent', createPlotlyComponent.default);
-    console.log('Plotly', Plotly);
 
-    if (!Plot) {
-      Plot = createPlotlyComponent.default(Plotly);
-    }
     const { data, layout } = jsonData;
-
-
 
     const getPlot = () => (
       <Plot
