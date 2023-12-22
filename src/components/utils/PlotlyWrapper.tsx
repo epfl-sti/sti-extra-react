@@ -20,17 +20,6 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
   relayOutHandler,
   plotlyCdnSource,
 }) => {
-  const extPlotlyLoaded = useExternalScript(
-    plotlyCdnSource || 'https://cdn.plot.ly/plotly-latest.min.js'
-  );
-
-  console.log('PlotlyWrapper: extPlotlyLoaded', extPlotlyLoaded);
-  console.log('PlotlyWrapper: plotlyLoaded', plotlyLoaded);
-  
-
-  if (!plotlyLoaded) {
-    plotlyLoaded = extPlotlyLoaded;
-  }
 
   const renderPlot = () => {
 
@@ -65,8 +54,7 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
 
   return (
     <div>
-      {!plotlyLoaded && <Spinner />}
-      {jsonData && plotlyLoaded && renderPlot()}
+      {jsonData  && renderPlot()}
     </div>
   );
 };
