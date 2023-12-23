@@ -1,51 +1,30 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { useExternalScript } from './useExternalScript';
-import createPlotlyComponent from 'react-plotly.js/factory';
-import Spinner from './spinner';
 import './plotlys.css';
+import Plot from 'react-plotly.js';
 
 interface PlotlyWrapperProps {
-  jsonData: object;
+  jsonData: {layout: any, data: any};
   bottomLegend?: string;
   relayOutHandler?: (e: any) => void;
   plotlyCdnSource?: string;
 }
 
-let Plot: any;
-let plotlyLoaded: boolean;
 
 const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
   jsonData,
   bottomLegend,
   relayOutHandler,
-  plotlyCdnSource,
 }) => {
-  const extPlotlyLoaded = useExternalScript(
-    plotlyCdnSource || 'https://cdn.plot.ly/plotly-latest.min.js'
-  );
-
-  console.log('PlotlyWrapper: extPlotlyLoaded', extPlotlyLoaded);
-  console.log('PlotlyWrapper: plotlyLoaded', plotlyLoaded);
-  
-
-  if (!plotlyLoaded) {
-    plotlyLoaded = extPlotlyLoaded;
-  }
 
   const renderPlot = () => {
-    console.log('createPlotlyComponent', createPlotlyComponent.default);
-    console.log('Plotly', Plotly);
 
-    if (!Plot) {
-      Plot = createPlotlyComponent.default(Plotly);
-    }
     const { data, layout } = jsonData;
 
+    const getPlot = () => {
 
-
-    const getPlot = () => (
-      <Plot
+      if ((Plot as any).default !== undefined) {
+        //@ts-expect-error import quirck
+        return <Plot.default
         data={data}
         layout={layout}
         onRelayout={(e: any) => {
@@ -55,7 +34,22 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
         }}
         config={{ displayModeBar: false }}
       />
-    );
+      } else {
+        return <Plot
+        data={data}
+        layout={layout}
+        onRelayout={(e: any) => {
+          if (relayOutHandler) {
+            relayOutHandler(e);
+          }
+        }}
+        config={{ displayModeBar: false }}
+      />
+
+      }
+
+      
+    };
 
     return bottomLegend ? (
       <div>
@@ -73,15 +67,9 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
 
   return (
     <div>
-      {!plotlyLoaded && <Spinner />}
-      {jsonData && plotlyLoaded && renderPlot()}
+      {jsonData  && renderPlot()}
     </div>
   );
-};
-
-PlotlyWrapper.propTypes = {
-  jsonData: PropTypes.object,
-  plotlyCdnSource: PropTypes.string,
 };
 
 export default PlotlyWrapper;

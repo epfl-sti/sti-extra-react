@@ -1,12 +1,10 @@
 import React from 'react';
-import { useExternalScript } from '../../utils/useExternalScript';
 import '../common/styles.css'
-
+//@ts-expect-error - no types for xlsx
+import * as XLSX from 'xlsx/xlsx.mjs';
 import PropTypes from 'prop-types';
 import 'font-awesome/css/font-awesome.min.css';
 
-const defaultJszipJsSource = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.0/jszip.js";
-const defaultXlsxJsSource = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.0/xlsx.full.min.js";
 
 interface XlsGeneratorProps {
   bookName?: string;
@@ -14,8 +12,6 @@ interface XlsGeneratorProps {
   labelString?: string;
   data: any[];
   errorHandler?: any;
-  xlsxJsSource?: string;
-  jszipJsSource?: string;
   customButtonStyles?: any;
 }
 
@@ -25,12 +21,8 @@ export const XlsGenerator: React.FC<XlsGeneratorProps> = ({
   labelString,
   data,
   errorHandler,
-  xlsxJsSource,
-  jszipJsSource,
   customButtonStyles
 }) => {
-  const xlsxLoaded = useExternalScript(xlsxJsSource || defaultXlsxJsSource);
-  const jszipLoaded = useExternalScript(jszipJsSource || defaultJszipJsSource);
   const buttonClassName = customButtonStyles ? null : 'btn btn-primary btn-sm'
 
 
@@ -56,13 +48,11 @@ export const XlsGenerator: React.FC<XlsGeneratorProps> = ({
     </button>
   );
 
-  return <div>{xlsxLoaded && jszipLoaded && getButton()}</div>;
+  return <div>{getButton()}</div>;
 };
 
 XlsGenerator.propTypes = {
   sheetName: PropTypes.string,
   errorHandler: PropTypes.func,
-  xlsxJsSource: PropTypes.string,
-  jszipJsSource: PropTypes.string,
   customButtonStyles: PropTypes.string
 };
