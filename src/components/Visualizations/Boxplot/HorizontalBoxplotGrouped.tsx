@@ -1,7 +1,6 @@
 import React from 'react';
 import PlotlyWrapper from '../../utils/PlotlyWrapper';
 import { getPlotlyHboxPlotGrouppedObject } from './plotlyHorizontalBoxplotGroupedHelper';
-import PropTypes from 'prop-types';
 
 interface PlotlyHorizontalBoxplotProps {
   data?: object;
@@ -9,7 +8,7 @@ interface PlotlyHorizontalBoxplotProps {
   labels?: any[];
   xylegend?: object;
   colors?: any[];
-  colorsShapesMap?: any[];
+  colorsShapesMap?: { colors: {[key: string]: string }; shapes: {[key: string]: string }};
   stacked?: boolean;
   title?: string;
   width?: number;
@@ -52,20 +51,5 @@ export const HorizontalBoxplotGrouped: React.FC<PlotlyHorizontalBoxplotProps> = 
   );
 
   return <div>{data && getChart()}</div>;
-};
-
-HorizontalBoxplotGrouped.propTypes = {
-  data: PropTypes.object,
-  dimensions: PropTypes.array,
-  labels: PropTypes.array,
-  xylegend: PropTypes.object,
-  colors: PropTypes.array,
-  colorsShapesMap: PropTypes.array,
-  title: PropTypes.string,
-  stacked: PropTypes.bool,
-  width: PropTypes.number,
-  height: PropTypes.number,
-  bottomLegend: PropTypes.string,
-  plotlyCdnSource: PropTypes.string,
 };
 
