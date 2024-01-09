@@ -153,6 +153,7 @@ export function getPlotlyVBarObject({
       return {
         ...basetrace,
         text: yItems.map(item => hoverFn(data[item])),
+        textposition: 'none',
         hoverinfo: 'text'
       };
     }

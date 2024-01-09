@@ -39,7 +39,7 @@ export interface ChoroplethMapOptions {
     scale?: number,
     rotation?: any
 
-  };
+  } ;
   center?: any; // Adjust the type accordingly
   hideScale?: boolean;
 }
