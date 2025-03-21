@@ -4,7 +4,7 @@ import Spinner from "../components/utils/spinner";
 const meta = {
   title: "Utils/Spinner",
   component: Spinner,
-  tags: ["docsPage"]
+  tags: ["docsPage"],
 };
 
 export default meta;
