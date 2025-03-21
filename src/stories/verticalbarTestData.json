@@ -1,0 +1,103 @@
+{
+    "data": {
+        "ABCD": {
+            "fakeentity": "ABCD",
+            "label3": 10000,
+            "label1": 1000,
+            "label2": 0,
+            "available": 9000,
+            "label1Perc": 10,
+            "label2Perc": 0,
+            "availPerc": 90
+        },
+        "EFGH": {
+            "fakeentity": "EFGH",
+            "label3": 10000,
+            "label1": 2000,
+            "label2": 0,
+            "available": 8000,
+            "label1Perc": 20,
+            "label2Perc": 0,
+            "availPerc": 80
+        },
+        "IJKL": {
+            "fakeentity": "IJKL",
+            "label3": 10000,
+            "label1": 5000,
+            "label2": 1000,
+            "available": 4000,
+            "label1Perc": 50,
+            "label2Perc": 10,
+            "availPerc": 40
+        }
+    },
+    "annotations": [
+        {
+            "font": {
+                "family": "Arial",
+                "size": 14,
+                "color": "rgba(245,246,249,1)"
+            },
+            "showarrow": false,
+            "text": "ABCD",
+            "x": "ABCD",
+            "y": 12
+        },
+        {
+            "font": {
+                "family": "Arial",
+                "size": 14,
+                "color": "rgba(245,246,249,1)"
+            },
+            "showarrow": false,
+            "text": "EFGH",
+            "x": "EFGH",
+            "y": 22
+        },
+        {
+            "font": {
+                "family": "Arial",
+                "size": 14,
+                "color": "rgba(245,246,249,1)"
+            },
+            "showarrow": false,
+            "text": "IJKL",
+            "x": "IJKL",
+            "y": 62
+        },
+        {
+            "font": {
+                "family": "Arial",
+                "size": 12,
+                "color": "#000"
+            },
+            "showarrow": false,
+            "text": "Label3: 10,000<br>Label 2: 0<br>Label 3: 1,000",
+            "x": "ABCD",
+            "y": 108
+        },
+        {
+            "font": {
+                "family": "Arial",
+                "size": 12,
+                "color": "#000"
+            },
+            "showarrow": false,
+            "text": "Label3: 10,000<br>Label 2: 0<br>Label 3: 2,000",
+            "x": "EFGH",
+            "y": 108
+        },
+        {
+            "font": {
+                "family": "Arial",
+                "size": 12,
+                "color": "#000"
+            },
+            "showarrow": false,
+            "text": "Label3: 10,000<br>Label 2: 1,000<br>Label 3: 5,000",
+            "x": "IJKL",
+            "y": 108
+        }
+    ],
+    "label3StatusColors": ["#e15759", "#f28e2c", "#4e79a7"]
+}
