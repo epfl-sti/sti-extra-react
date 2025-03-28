@@ -14,6 +14,23 @@ type StackChartProps = {
   usePercentages: boolean;
 };
 
+/**
+ * A React functional component that renders a stacked bar chart using D3.js.
+ *
+ * @param {StackChartProps} props - The properties object for the StackChart component.
+ * @param {Record<string, number>} props.dataElement - The data object containing values for each dimension.
+ * @param {number} props.maxValue - The maximum value for the chart, used to calculate bar widths.
+ * @param {number} [props.minValue] - The minimum value for the chart, used for adjusting the x-axis.
+ * @param {string[]} props.dimensions - An array of dimension keys to extract data from `dataElement`.
+ * @param {string[]} [props.colors] - An optional array of colors for the bars. Defaults to a predefined set of colors.
+ * @param {number} [props.height=30] - The height of the bars in the chart. Defaults to 30.
+ * @param {boolean} props.showBarValues - A flag indicating whether to display values on the bars.
+ * @param {string} [props.barValuesSuffix] - An optional suffix to append to the bar values (e.g., '%').
+ * @param {boolean} props.usePercentages - A flag indicating whether to display values as percentages.
+ *
+ * @returns {JSX.Element} A scalable vector graphic (SVG) element containing the stacked bar chart.
+ *
+ */
 export default function StackChart({
   dataElement,
   maxValue,

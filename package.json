@@ -74,7 +74,7 @@
     "@types/react-dom": "^18.0.11",
     "@types/react-plotly.js": "^2.6.0",
     "@types/sort-array": "^4.1.2",
-    "@types/xlsx": "^0.0.36",
+    "@types/xlsx": "^0.0.35",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^4.0.0",
@@ -83,9 +83,9 @@
     "eslint-plugin-react-refresh": "^0.3.4",
     "eslint-plugin-storybook": "^0.11.6",
     "storybook": "^8.6.7",
-    "tsup": "^6.7.0",
+    "tsup": "^8.4.0",
     "typescript": "^5.0.2",
-    "vite": "^4.3.2"
+    "vite": "^6.2.3"
   },
   "author": "Juan Convers",
   "license": "Apache-2.0",

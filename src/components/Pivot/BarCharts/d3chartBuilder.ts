@@ -16,10 +16,32 @@ const q = new queue();
 q.concurrency = 150;
 q.autostart = true;
 
+/**
+ * Sets the concurrency level for the D3 chart builder.
+ *
+ * @param concurrency - The maximum number of concurrent tasks allowed.
+ */
 export function setD3BuilderConcurrency(concurrency: number): void {
   q.concurrency = concurrency;
 }
 
+/**
+ * Builds a D3 chart by appending and configuring SVG elements based on the provided data.
+ *
+ * @param svg - A D3 selection of an SVG group element (`<g>`) where the chart will be rendered.
+ * @param data - An array of `ChartData` objects representing the data to be visualized.
+ * @param showBarValues - A boolean indicating whether to display text values on the bars.
+ * @param labelsSuffix - An optional string to append as a suffix to the bar values. Defaults to an empty string.
+ * @param isGaugeChart - A boolean indicating whether the chart is a gauge chart. Defaults to `false`.
+ *
+ * The function dynamically appends `rect` and `text` elements to the provided SVG group element
+ * based on the data. It supports two modes:
+ * - Bar chart mode: Displays bars with optional text values.
+ * - Gauge chart mode: Displays gauge-like bars with optional text values positioned differently.
+ *
+ * The function uses a queue (`q`) to manage asynchronous rendering and ensures a delay of 50ms
+ * before invoking the callback to allow for rendering completion.
+ */
 export default function d3chartBuilder(
   svg: d3.Selection<SVGGElement, unknown, null, undefined>,
   data: ChartData[],

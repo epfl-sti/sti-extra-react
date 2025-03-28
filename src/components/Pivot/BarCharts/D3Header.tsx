@@ -7,6 +7,17 @@ interface D3HeaderProps {
   legendValues: string[];
 }
 
+/**
+ * A React functional component that renders a D3-based header chart within an SVG element.
+ * The chart is dynamically built using the provided legend values and height.
+ *
+ * @param {D3HeaderProps} props - The properties for the D3Header component.
+ * @param {number} [props.height=16] - The height of the SVG element and chart bars.
+ * @param {string[]} props.legendValues - An array of legend values used to build the chart.
+ *
+ * @returns {JSX.Element} A rendered SVG element containing the D3 chart.
+ *
+ */
 export default function D3Header({ height = 16, legendValues }: D3HeaderProps) {
   const stepValue = 100 / (legendValues.length - 1);
   const getWidth = (i: number) => stepValue * i;
@@ -26,7 +37,8 @@ export default function D3Header({ height = 16, legendValues }: D3HeaderProps) {
   const ref = useD3(
     (svg) => {
       svg.selectAll('*').remove();
-      d3HeaderChartBuilder(svg, builtDataObject, true, () => console.log);
+      // @ts-ignore. It needs the additional anonymous function to work.
+      d3HeaderChartBuilder(svg, builtDataObject, true, () => {});
     },
     [legendValues]
   );
