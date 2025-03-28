@@ -7,7 +7,7 @@ type AggregatedData = Record<string, any>;
 type ValueKey = { field: string; aggregator?: Aggregator; formatter?: FormatterFunction };
 
 type GetGroupedDataParams = {
-  data: DataItem[];
+  data: DataItem[] | Record<string, any>;
   rowAttributes: string[];
   vals: ValueKey[];
   postprocessfn?: (data: DataItem[]) => DataItem[];
@@ -16,6 +16,30 @@ type GetGroupedDataParams = {
   calculateSectionPercentage?: boolean;
   calculateTotalsPercentage?: boolean;
 };
+
+/**
+ * Ensures the input is converted to an array
+ */
+function ensureArray(data: DataItem[] | Record<string, any>): DataItem[] {
+  // If it's already an array, return it
+  if (Array.isArray(data)) return data;
+  
+  // If it's an object, try to convert its values to an array
+  if (typeof data === 'object' && data !== null) {
+    // Check if it's a Record with array values
+    const values = Object.values(data);
+    if (values.length > 0 && Array.isArray(values[0])) {
+      return values.flat();
+    }
+    
+    // If it's a simple object, convert to array of objects
+    return [data];
+  }
+  
+  // If it's not an array or object, wrap it in an array
+  return [data as DataItem];
+}
+
 
 /**
  * Generates a combined key string based on the specified row attributes of a data item. ie. Europe___Switzerland, etc
@@ -31,10 +55,13 @@ function getCombinedKeyBasedOnRowAttributes(dataItem: DataItem, rowAttributes: s
   return keyArray.join(separator);
 }
 
-export function getGroups(data: DataItem[], rowAttributes: string[], showSectionTotals?: boolean): GroupedData {
+export function getGroups(data: DataItem[] | Record<string, any>, rowAttributes: string[], showSectionTotals?: boolean): GroupedData {
+  // Ensure data is an array
+  const processedData = ensureArray(data);
+  
   const grouped: GroupedData = {};
 
-  data.forEach(dataItem => {
+  processedData.forEach(dataItem => {
     const combinedKeyArray = getCombinedKeyBasedOnRowAttributes(dataItem, rowAttributes);
     grouped[combinedKeyArray] = grouped[combinedKeyArray] || [];
     grouped[combinedKeyArray].push(dataItem);

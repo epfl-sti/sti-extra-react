@@ -1,0 +1,90 @@
+body {
+    font-family: "Nunito Sans",-apple-system,".SFNSText-Regular","San Francisco",BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin: 0;
+    font-size: 0.9em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-overflow-scrolling: touch;
+    color: #333333;
+}
+
+.simple-pivot-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  
+.simple-pivot-table th, td {
+    text-align: left;
+    border-top: 1px solid #ccc;
+}
+.simple-pivot-table th {
+    vertical-align: top;
+    background-color:#fff;
+    font-weight: normal;
+    border-top: 1px solid #ccc;
+    text-align: left;
+    padding: 0.6em;
+}
+
+.simple-pivot-table thead th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    vertical-align: top;
+    background-color:#fff;
+    font-weight: bold;
+    border-top: 1px solid #ccc;
+    text-align: left;
+    padding: 0.6em;
+}
+
+.simple-pivot-table tbody td.bar {
+    vertical-align: top;
+    font-weight: bold;
+    background-color: #f2f2f2;
+    border-top: 1px solid #ccc;
+    text-align: left;
+    padding: 0.6em;
+}
+
+
+.simple-pivot-table th.pivotRowHeaderTotal {
+    text-align: right;
+    font-weight: bold;
+}
+
+th.pivotRowHeaderHighlight {
+    background-color: yellow;
+}
+
+.simple-pivot-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.popoverBox {
+    background-color: #fff;
+    box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%);
+    -moz-box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%);
+    clear: both;
+    padding: 10px;
+    width: 240px;
+}
+
+.popOverBox-table {
+    border: 0px;
+}
+
+.popOverBox-table-cell {
+    width: 50%;
+    padding-right: 1em;
+}
+
+.popOverBox-table th, td {
+    text-align: left;
+    border-top: none;
+}
