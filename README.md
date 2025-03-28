@@ -4,7 +4,7 @@ A React Storybook UI Components library that extends the core **EPFL Elements Re
 
 ## Overview  
 
-`sti-extra-react` provides additional UI components, including **visualization and Excel-related components**, that are **not part of the core EPFL Elements library**. These components were initially developed for an internal **STI tool** and later generalized in the [`@epfl-sti/epfl-elements-rf`](https://www.npmjs.com/package/@epfl-sti/epfl-elements-rf) package.  
+`sti-extra-react` provides additional UI components, including **visualization, pivot and Excel-related components**, that are **not part of the core EPFL Elements library**. These components were initially developed for an internal **STI tool** and later generalized in the [`@epfl-sti/epfl-elements-rf`](https://www.npmjs.com/package/@epfl-sti/epfl-elements-rf) package.  
 
 By using this library alongside `@epfl-sti/epfl-elements-rf`, you get all the necessary components to replicate the functionality of the internal STI tool.  
 

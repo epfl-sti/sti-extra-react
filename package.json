@@ -1,6 +1,6 @@
 {
   "name": "@epfl-sti/sti-extra-react",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "private": false,
   "description": "This repository contains a React Storybook UI Components library that serves a complement library to the core epfl elements react library.",
   "homepage": "https://github.com/epfl-sti/sti-extra-react",
@@ -18,7 +18,8 @@
     "lint:fix": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "prepare": "npm run build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest"
   },
   "tsup": {
     "entry": [
@@ -38,15 +39,19 @@
   },
   "dependencies": {
     "@storybook/addons": "^7.6.17",
+    "d3": "^7.9.0",
     "dayjs": "^1.11.10",
     "dygraphs": "^2.2.1",
     "font-awesome": "4.7.0",
     "jszip": "^3.10.1",
     "plotly.js": "^2.27.1",
     "prop-types": "^15.8.1",
+    "queue": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-plotly.js": "^2.6.0",
+    "react-popover": "^0.5.10",
+    "sort-array": "^5.0.0",
     "sort-objects-array": "^2.0.0",
     "xlsx": "^0.18.5"
   },
@@ -61,13 +66,15 @@
     "@storybook/react-vite": "^8.6.7",
     "@storybook/test": "^8.6.7",
     "@storybook/theming": "^8.6.7",
+    "@types/d3": "^7.4.3",
     "@types/dygraphs": "^2.1.4",
     "@types/js-cookie": "^3.0.3",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/react-plotly.js": "^2.6.0",
-    "@types/xlsx": "^0.0.36",
+    "@types/sort-array": "^4.1.2",
+    "@types/xlsx": "^0.0.35",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^4.0.0",
@@ -76,9 +83,9 @@
     "eslint-plugin-react-refresh": "^0.3.4",
     "eslint-plugin-storybook": "^0.11.6",
     "storybook": "^8.6.7",
-    "tsup": "^6.7.0",
+    "tsup": "^8.4.0",
     "typescript": "^5.0.2",
-    "vite": "^4.3.2"
+    "vite": "^6.2.3"
   },
   "author": "Juan Convers",
   "license": "Apache-2.0",
