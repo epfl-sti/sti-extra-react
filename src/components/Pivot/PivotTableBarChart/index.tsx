@@ -37,7 +37,7 @@ interface PivotTableBarChartProps {
   rows: string[];
   showPopOver?: boolean;
   showRanking?: boolean;
-  values: { field: string; aggregator: 'sum' | 'count' | 'avg' | 'min' | 'max' }[];
+  values: { field: string; aggregator?: 'sum' | 'count' | 'avg' | 'min' | 'max' }[];
   width?: number;
   rowsLimit?: number;
   hideBarLegend?: boolean;
@@ -65,6 +65,7 @@ export function PivotTableBarChart ({
   popOverFunction,
   postprocessfn,
   rows,
+  rowsLimit,
   showPopOver,
   showRanking,
   values,
@@ -78,6 +79,8 @@ export function PivotTableBarChart ({
   const [minValue, setMinValue] = useState<number | undefined>()
 
   const getOriginals = true
+
+  const getSlicedRows = (rows: string[]) => rowsLimit ? rows.slice(0, rowsLimit) : rows
 
   useEffect(() => {
     const { pivotData, colsValues, colsTotals, groupedOriginals } = getPivotDataColumns({
@@ -248,10 +251,10 @@ export function PivotTableBarChart ({
 
   const getRows = () =>
     <tbody>
-      {pivotRows.map((row, i) =>
-        <tr key={`row-${i}`}>
-          {getRowLine(row, i)}
-        </tr>)}
+      {getSlicedRows(pivotRows as any[]).map((row: any[], i: number) =>
+      <tr key={`row-${i}`}>
+        {getRowLine(row, i)}
+      </tr>)}
     </tbody>
 
   return (

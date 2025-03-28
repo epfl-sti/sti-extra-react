@@ -1,4 +1,3 @@
-import React from 'react';
 import { nanoid } from 'nanoid';
 import useD3 from './d3hook';
 import d3chartBuilder from './d3chartBuilder';
