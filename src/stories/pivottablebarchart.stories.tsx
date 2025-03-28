@@ -4,7 +4,7 @@ import { PivotTableBarChart } from '../components/Pivot/PivotTableBarChart/'
 import testData from '../components/Pivot/testData/index.json'
 
 const meta = {
-  title: 'PivotTableBarChart',
+  title: 'Pivot/PivotTableBarChart',
   component: PivotTableBarChart,
 }
 
