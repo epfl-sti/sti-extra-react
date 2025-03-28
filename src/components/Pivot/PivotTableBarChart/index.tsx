@@ -103,7 +103,7 @@ export function PivotTableBarChart ({
     } else {
       setMaxValue(barsMaxValue)
     }
-  }, [data, rows, values, columnsLabels])
+  }, [data, rows, values, columnsLabels]) // eslint-disable-line
 
   const getColumnLabel = (col: string, i: number): string =>
     columnsLabels && columnsLabels[i] ? columnsLabels[i] : col
