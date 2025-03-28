@@ -15,6 +15,36 @@ import getMinMaxValues from '../BarCharts/getMinMaxValue'
 
 import PopOver from '../PopOver/'
 
+interface PivotTableBarChartProps {
+  barLegendFormatter?: (value: number) => string;
+  barLegendSteps?: number;
+  barType?: 'gauge' | 'stack' | 'multistack';
+  barsHeight?: number;
+  barsMaxValue?: number;
+  barsMinValue?: number;
+  columnsLabels?: string[];
+  colors?: string[];
+  data: any[];
+  filters?: any;
+  height?: number;
+  maxHeight?: number;
+  maxWidth?: number;
+  multiStackSplit?: number;
+  orderBy?: { field: string; order: 'asc' | 'desc' }[];
+  popOverFormatter?: (value: number) => string;
+  popOverFunction?: (row: any) => { key: string; value: any }[];
+  postprocessfn?: (result: any) => { [key: string]: any };
+  rows: string[];
+  showPopOver?: boolean;
+  showRanking?: boolean;
+  values: { field: string; aggregator: 'sum' | 'count' | 'avg' | 'min' | 'max' }[];
+  width?: number;
+  rowsLimit?: number;
+  hideBarLegend?: boolean;
+  showBarValues?: boolean;
+  barValuesSuffix?: string;
+}
+
 export function PivotTableBarChart ({
   barLegendFormatter,
   barLegendSteps = 10,
@@ -39,7 +69,7 @@ export function PivotTableBarChart ({
   showRanking,
   values,
   width
-}) {
+}: PivotTableBarChartProps) {
   const [cols, setCols] = useState<string[] | undefined>()
   const [pivotRows, setRows] = useState<any[] | undefined>()
   const [groupedDataState, setGroupedDataState] = useState<Record<string, any> | undefined>()
@@ -73,9 +103,9 @@ export function PivotTableBarChart ({
     } else {
       setMaxValue(barsMaxValue)
     }
-  }, [data, rows, values, columnsLabels]) // eslint-disable-line
+  }, [data, rows, values, columnsLabels])
 
-  const getColumnLabel = (col, i) =>
+  const getColumnLabel = (col: string, i: number): string =>
     columnsLabels && columnsLabels[i] ? columnsLabels[i] : col
 
   const getColsLength = () => showRanking 
