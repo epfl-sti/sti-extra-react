@@ -9,9 +9,9 @@ type StackChartProps = {
   dimensions: string[];
   colors?: string[];
   height?: number;
-  showBarValues: boolean;
-  barValuesSuffix: string;
-  usePercentages: boolean;
+  showBarValues?: boolean;
+  barValuesSuffix?: string;
+  usePercentages?: boolean;
 };
 
 /**

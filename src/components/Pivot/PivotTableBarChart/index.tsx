@@ -15,6 +15,24 @@ import getMinMaxValues from '../BarCharts/getMinMaxValue'
 
 import PopOver from '../PopOver/'
 
+
+interface HeaderItem {
+  type: string;
+  value: string | number;
+  rowSpan: number;
+  visible?: boolean;
+  totalsLine?: boolean;
+}
+
+interface RowItem {
+  type: string;
+  value: string | number;
+  visible?: boolean;
+  totalsLine?: boolean;
+  rowSpan?: number; 
+}
+
+
 interface PivotTableBarChartProps {
   barLegendFormatter?: (value: number) => string;
   barLegendSteps?: number;
@@ -72,14 +90,14 @@ export function PivotTableBarChart ({
   width
 }: PivotTableBarChartProps) {
   const [cols, setCols] = useState<string[] | undefined>()
-  const [pivotRows, setRows] = useState<any[] | undefined>()
+  const [pivotRows, setRows] = useState<RowItem[][] | undefined>()
   const [groupedDataState, setGroupedDataState] = useState<Record<string, any> | undefined>()
   const [maxValue, setMaxValue] = useState<number | undefined>()
   const [minValue, setMinValue] = useState<number | undefined>()
 
   const getOriginals = true
 
-  const getSlicedRows = (rows: string[]) => rowsLimit ? rows.slice(0, rowsLimit) : rows
+  const getSlicedRows = (rows: RowItem[][]) => rowsLimit ? rows.slice(0, rowsLimit) : rows
 
   useEffect(() => {
     // @ts-ignore. colsTotals is disregarded and not used
@@ -153,8 +171,14 @@ export function PivotTableBarChart ({
     }, {});
     return { valuesObj, valuesCols };
   };
+  
+  interface DataArrayItem {
+    key: string;
+    value: string;
+  }
+  
+  function getBarChart (valuesObj: ValuesObj, valuesCols: string[], dataArray: DataArrayItem[]) {
 
-  function getBarChart (valuesObj, valuesCols, dataArray) {
     if (barType === 'gauge') {
       return (
         <PopOver showPopOver={showPopOver} dataArray={dataArray}>
@@ -202,7 +226,10 @@ export function PivotTableBarChart ({
     }
   }
 
-  const getPopOverDataArray = (headerItems, row) => {
+  
+
+  const getPopOverDataArray = (headerItems: HeaderItem[], row: RowItem[]) => {
+    console.log({headerItems, row})
     if (!showPopOver) {
       return []
     }
@@ -221,9 +248,9 @@ export function PivotTableBarChart ({
         : [...rows.slice(0, rowsLen - 1), 'ranking', ...rows.slice(rowsLen - 1)]
 
     const originalValue = groupedDataState[rowKey]
-    const dataArray = []
+    const dataArray: DataArrayItem[] = []
     headerItems.forEach((item, i) => {
-      dataArray.push({ key: popOverKeys[i], value: item.value })
+      dataArray.push({ key: popOverKeys[i], value: String(item.value) })
     })
     Object.keys(originalValue).forEach(key => {
       const item = originalValue[key]
@@ -232,28 +259,38 @@ export function PivotTableBarChart ({
     return dataArray
   }
 
-  const getRowLine = (row, i) => {
-    const headerItems = row.filter(x => x.type === 'header')
-    const popOverDataArray = getPopOverDataArray(headerItems, row)
-    const rowItems = headerItems.map(
-      (item, y) => item.visible
-        ? <th key={`th-${i}-${y}`} rowSpan={item.rowSpan} className='pivotRowHeader'>{item.value}</th>
-        : null).filter(x => x)
-    const { valuesObj, valuesCols } = getValuesObj(row)
+  const getRowLine = (row: RowItem[], i: number) => {
+    const headerItems = row.filter((x) => x.type === 'header');
+    const popOverDataArray = getPopOverDataArray(headerItems as HeaderItem[], row);
+    const rowItems = headerItems
+      .map((item, y) =>
+        item.visible ? (
+          <th
+            key={`th-${i}-${y}`}
+            rowSpan={item.rowSpan}
+            className="pivotRowHeader"
+          >
+            {item.value}
+          </th>
+        ) : null
+      )
+      .filter((x) => x);
+    const { valuesObj, valuesCols } = getValuesObj(row);
     rowItems.push(
-      <td key={`bar-${i}`} className='bar'>
+      <td key={`bar-${i}`} className="bar">
         {getBarChart(valuesObj, valuesCols, popOverDataArray)}
       </td>
-    )
-    return rowItems.filter(x => x)
-  }
+    );
+    return rowItems.filter((x) => x);
+  };
 
   const getRows = () =>
     <tbody>
-      {getSlicedRows(pivotRows as any[]).map((row: any[], i: number) =>
-      <tr key={`row-${i}`}>
-        {getRowLine(row, i)}
-      </tr>)}
+      {getSlicedRows(pivotRows || []).map((row, i) => (
+        <tr key={`row-${i}`}>
+          {getRowLine(row, i)}
+        </tr>
+      ))}
     </tbody>
 
   return (
