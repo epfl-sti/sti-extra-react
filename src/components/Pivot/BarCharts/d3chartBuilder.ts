@@ -1,5 +1,8 @@
-import queue from 'queue';
+import PQueue from 'p-queue';
 import * as d3 from 'd3';
+
+const q = new PQueue({ concurrency: 150, autoStart: true });
+
 
 interface ChartData {
   width: number;
@@ -11,10 +14,6 @@ interface ChartData {
   fontSize?: string;
   fontColor?: string;
 }
-
-const q = new queue();
-q.concurrency = 150;
-q.autostart = true;
 
 /**
  * Sets the concurrency level for the D3 chart builder.
@@ -49,7 +48,7 @@ export default function d3chartBuilder(
   labelsSuffix: string = '',
   isGaugeChart: boolean = false
 ): void {
-  q.push(function (cb: () => void) {
+  q.add(function (cb: () => void) {
     svg
       .selectAll<SVGRectElement, ChartData>('rect')
       .data(data)
