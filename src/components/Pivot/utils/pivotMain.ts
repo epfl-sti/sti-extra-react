@@ -10,6 +10,7 @@ import getFullTree from './getFullTree';
 
 interface ValueField {
   field: string;
+  aggregator?: 'sum' | 'count' | 'avg' | 'min' | 'max';
 }
 
 interface PivotDataColumnsParams {

@@ -6,6 +6,7 @@ export function removeNewLines(val: string): string {
 
 interface ValueField {
   field: string;
+  aggregator?: 'sum' | 'count' | 'avg' | 'min' | 'max';
 }
 
 interface GetColumnsParams {
