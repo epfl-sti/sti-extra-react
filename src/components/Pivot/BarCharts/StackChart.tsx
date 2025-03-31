@@ -9,9 +9,9 @@ type StackChartProps = {
   dimensions: string[];
   colors?: string[];
   height?: number;
-  showBarValues: boolean;
-  barValuesSuffix: string;
-  usePercentages: boolean;
+  showBarValues?: boolean;
+  barValuesSuffix?: string;
+  usePercentages?: boolean;
 };
 
 /**
@@ -82,6 +82,7 @@ export default function StackChart({
   const ref = useD3(
     (svg) => {
       svg.selectAll('*').remove();
+      // @ts-ignore. It needs the additional anonymous function to work.
       d3chartBuilder(svg, builtDataObjectWithX, showBarValues, barValuesSuffix);
     },
     [dataElement]
@@ -89,6 +90,7 @@ export default function StackChart({
 
   return (
     <svg
+      // @ts-ignore. This is a valid ref
       ref={ref}
       key={nanoid()}
       style={{
