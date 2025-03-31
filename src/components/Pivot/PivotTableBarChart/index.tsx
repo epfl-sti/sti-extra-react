@@ -74,7 +74,6 @@ export function PivotTableBarChart ({
   const [cols, setCols] = useState<string[] | undefined>()
   const [pivotRows, setRows] = useState<any[] | undefined>()
   const [groupedDataState, setGroupedDataState] = useState<Record<string, any> | undefined>()
-  const [colsTotals, setColsTotals] = useState<Record<string, number> | undefined>()
   const [maxValue, setMaxValue] = useState<number | undefined>()
   const [minValue, setMinValue] = useState<number | undefined>()
 
@@ -83,6 +82,7 @@ export function PivotTableBarChart ({
   const getSlicedRows = (rows: string[]) => rowsLimit ? rows.slice(0, rowsLimit) : rows
 
   useEffect(() => {
+    // @ts-ignore. colsTotals is disregarded and not used
     const { pivotData, colsValues, colsTotals, groupedOriginals } = getPivotDataColumns({
       data,
       filters,
@@ -95,7 +95,6 @@ export function PivotTableBarChart ({
       getOriginals
     })
 
-    setColsTotals(colsTotals)
     setCols(colsValues)
     setRows(pivotData)
     setGroupedDataState(groupedOriginals)
@@ -125,7 +124,7 @@ export function PivotTableBarChart ({
         <th key='bar-header' className='bar-header'>
           <D3Header
             height={barsHeight}
-            legendValues={getLinearScale(minValue, maxValue, barLegendSteps, barLegendFormatter)}
+            legendValues={getLinearScale(minValue, maxValue, barLegendSteps, barLegendFormatter).map(value => value.toString())}
           />
         </th>
       </tr>

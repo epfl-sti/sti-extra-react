@@ -46,6 +46,7 @@ export default function D3Header({ height = 16, legendValues }: D3HeaderProps) {
   return (
     <svg
       className="svgHeader"
+      // @ts-ignore. This is a valid ref
       ref={ref}
       key={nanoid()}
       style={{

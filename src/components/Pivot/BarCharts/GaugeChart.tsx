@@ -85,6 +85,7 @@ export default function GaugeChart({
   const ref = useD3(
     (svg) => {
       svg.selectAll('*').remove();
+      // @ts-ignore. It needs the additional anonymous function to work.
       d3chartBuilder(svg, builtDataObjectWithX, showBarValues, barValuesSuffix, true);
     },
     [dataElement]
@@ -92,6 +93,7 @@ export default function GaugeChart({
 
   return (
     <svg
+      // @ts-ignore. THis is a valid ref
       ref={ref}
       key={nanoid()}
       style={{
