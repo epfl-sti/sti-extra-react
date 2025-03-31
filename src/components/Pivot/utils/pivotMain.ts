@@ -7,10 +7,11 @@ import {
 import getGroupedData from './getGrouped';
 import getDenormalized from './getDenormalized';
 import getFullTree from './getFullTree';
+import { Aggregator } from './getAggregated';
 
 interface ValueField {
   field: string;
-  aggregator?: 'sum' | 'count' | 'avg' | 'min' | 'max';
+  aggregator?: Aggregator;
 }
 
 interface PivotDataColumnsParams {

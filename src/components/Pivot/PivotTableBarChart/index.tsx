@@ -14,6 +14,7 @@ import getLinearScale from '../BarCharts/d3getLinearScale'
 import getMinMaxValues from '../BarCharts/getMinMaxValue'
 
 import PopOver from '../PopOver/'
+import { Aggregator } from '../utils/getAggregated'
 
 
 interface HeaderItem {
@@ -55,7 +56,7 @@ interface PivotTableBarChartProps {
   rows: string[];
   showPopOver?: boolean;
   showRanking?: boolean;
-  values: { field: string; aggregator?: 'sum' | 'count' | 'avg' | 'min' | 'max' }[];
+  values: { field: string; aggregator?: Aggregator }[];
   width?: number;
   rowsLimit?: number;
   hideBarLegend?: boolean;

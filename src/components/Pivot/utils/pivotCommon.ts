@@ -1,4 +1,5 @@
 import soa from 'sort-objects-array';
+import { Aggregator } from './getAggregated';
 
 export function removeNewLines(val: string): string {
   return val.replace(/(\r\n|\n|\r)/gm, '');
@@ -6,7 +7,7 @@ export function removeNewLines(val: string): string {
 
 interface ValueField {
   field: string;
-  aggregator?: 'sum' | 'count' | 'avg' | 'min' | 'max';
+  aggregator?: Aggregator;
 }
 
 interface GetColumnsParams {
