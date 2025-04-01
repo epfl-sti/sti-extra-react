@@ -51,7 +51,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-plotly.js": "^2.6.0",
-    "react-popover": "^0.5.10",
+    "react-tiny-popover": "^8.1.6",
     "sort-array": "^5.0.0",
     "sort-objects-array": "^2.0.0",
     "xlsx": "^0.18.5"

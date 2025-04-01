@@ -230,7 +230,6 @@ export function PivotTableBarChart ({
   
 
   const getPopOverDataArray = (headerItems: HeaderItem[], row: RowItem[]) => {
-    console.log({headerItems, row})
     if (!showPopOver) {
       return []
     }

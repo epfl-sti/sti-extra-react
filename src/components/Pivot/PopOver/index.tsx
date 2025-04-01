@@ -1,5 +1,5 @@
 import { useState, ReactNode } from 'react';
-import Popover from 'react-popover';
+import { Popover } from 'react-tiny-popover';
 
 interface PopOverProps {
   showPopOver: boolean;
@@ -9,7 +9,7 @@ interface PopOverProps {
 
 export default function PopOver({ showPopOver, dataArray, children }: PopOverProps) {
   const [hovered, setHovered] = useState<boolean>(false);
-
+  
   const getPopOver = () => (
     <div
       className="popoverBox"
@@ -32,14 +32,13 @@ export default function PopOver({ showPopOver, dataArray, children }: PopOverPro
       </table>
     </div>
   );
-
+  
   return (
     <Popover
       isOpen={showPopOver ? hovered : false}
-      place="below"
-      tipSize={0.01}
-      enterExitTransitionDurationMs={0}
-      body={getPopOver()}
+      positions={['bottom']}
+      content={getPopOver()}
+      onClickOutside={() => setHovered(false)} // optional
     >
       <div onMouseOver={() => setHovered(true)} onMouseOut={() => setHovered(false)}>
         {children}
