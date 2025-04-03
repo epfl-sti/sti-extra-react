@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import getPivotDataColumns from '../utils/pivotMain';
+import { Value } from '../types'
+
 
 interface PivotTableProps {
   columnsLabels?: string[];
   data: string | any[];
   filters?: any[];
-  height?: string;
-  maxHeight?: string;
-  maxWidth?: string;
+  height?: number | string;
+  maxHeight?: number | string;
+  maxWidth?: number | string;
   orderBy?: { field: string; order: 'asc' | 'desc' }[];
   postprocessfn?: (data: any) => any;
   rows: any[];
@@ -19,8 +21,8 @@ interface PivotTableProps {
   calculateSectionPercentage?: boolean;
   calculateTotalsPercentage?: boolean;
   tableClassName?: string;
-  values?: any[];
-  width?: string;
+  values: Value[];
+  width?: number | string;
   headerLinks?: (string | ((value: any) => string))[];
 }
 

@@ -1,4 +1,3 @@
-import './index.css'
 import { useState, useEffect } from 'react'
 
 import getPivotDataColumns from '../utils/pivotMain'
@@ -14,24 +13,7 @@ import getLinearScale from '../BarCharts/d3getLinearScale'
 import getMinMaxValues from '../BarCharts/getMinMaxValue'
 
 import PopOver from '../PopOver/'
-import { Aggregator } from '../utils/getAggregated'
-
-
-interface HeaderItem {
-  type: string;
-  value: string | number;
-  rowSpan: number;
-  visible?: boolean;
-  totalsLine?: boolean;
-}
-
-interface RowItem {
-  type: string;
-  value: string | number;
-  visible?: boolean;
-  totalsLine?: boolean;
-  rowSpan?: number; 
-}
+import { HeaderItem, RowItem, Value } from '../types'
 
 
 interface PivotTableBarChartProps {
@@ -45,9 +27,9 @@ interface PivotTableBarChartProps {
   colors?: string[];
   data: any[];
   filters?: any;
-  height?: number;
-  maxHeight?: number;
-  maxWidth?: number;
+  height?: number | string;
+  maxHeight?: number | string;
+  maxWidth?: number | string;
   multiStackSplit?: number;
   orderBy?: { field: string; order: 'asc' | 'desc' }[];
   popOverFormatter?: (value: number) => string;
@@ -56,11 +38,12 @@ interface PivotTableBarChartProps {
   rows: string[];
   showPopOver?: boolean;
   showRanking?: boolean;
-  values: { field: string; aggregator?: Aggregator }[];
-  width?: number;
+  values: Value[];
+  width?: number | string;
   rowsLimit?: number;
   hideBarLegend?: boolean;
   showBarValues?: boolean;
+  tableClassName?: string;
   barValuesSuffix?: string;
 }
 
@@ -87,6 +70,7 @@ export function PivotTableBarChart ({
   rowsLimit,
   showPopOver,
   showRanking,
+  tableClassName,
   values,
   width
 }: PivotTableBarChartProps) {
@@ -295,7 +279,7 @@ export function PivotTableBarChart ({
 
   return (
     <div>
-      <table className='simple-pivot-table' style={{ width, height, maxWidth, maxHeight }}>
+      <table  className={tableClassName || 'simple-pivot-table'} style={{ width, height, maxWidth, maxHeight }}>
         {cols && getHeader()}
         {cols && pivotRows && getRows()}
       </table>

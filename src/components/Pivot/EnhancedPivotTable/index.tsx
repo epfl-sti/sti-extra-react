@@ -1,35 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import getPivotDataColumns from '../utils/pivotMain';
 import getGroupedData from '../utils/getGrouped';
-import { Aggregator } from '../utils/getAggregated';
+import {  Column, Value, RowItem } from '../types';
 
-interface Column {
-  field: string;
-  label?: string;
-  allowedValues: string[];
-}
-
-interface Value {
-  field: string;
-  label?: string;
-  aggregator?: Aggregator;
-  formatter?: (x: number) => any;
-}
-
-interface RowItem {
-  type: 'header' | 'value';
-  value: string;
-  rowSpan?: number;
-  visible?: boolean;
-  totalsLine?: boolean;
-}
 
 interface EnhancedPivotTableProps {
   columnsLabels?: string[];
   columns: Column[];
   data: string | any[];
   filters?: any[];
-  height?: string;
+  height?: number | string;
   maxHeight?: string;
   maxWidth?: string;
   orderBy?: any[];
@@ -40,8 +20,9 @@ interface EnhancedPivotTableProps {
   showSectionTotals?: boolean;
   calculateSectionPercentage?: boolean;
   calculateTotalsPercentage?: boolean;
+  tableClassName?: string;
   values: Value[];
-  width?: string;
+  width?: number | string;
 }
 
 export const EnhancedPivotTable: React.FC<EnhancedPivotTableProps> = ({
@@ -59,6 +40,7 @@ export const EnhancedPivotTable: React.FC<EnhancedPivotTableProps> = ({
   showSectionTotals,
   calculateSectionPercentage,
   calculateTotalsPercentage,
+  tableClassName,
   values,
   width
 }) => {
@@ -185,7 +167,7 @@ export const EnhancedPivotTable: React.FC<EnhancedPivotTableProps> = ({
 
   return (
     <div>
-      <table className='simple-pivot-table' style={{ width, height, maxWidth, maxHeight }}>
+      <table className={tableClassName || 'simple-pivot-table'} style={{ width, height, maxWidth, maxHeight }}>
         {cols && getHeader()}
         {cols && pivotRows && getRows()}
       </table>
