@@ -90,3 +90,7 @@ th a {
     text-align: left;
     border-top: none !important;
 }
+
+.pivotHeaderSeparator {
+    border-right: 1px solid #ccc;
+}

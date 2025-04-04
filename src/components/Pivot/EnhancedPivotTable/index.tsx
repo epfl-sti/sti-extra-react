@@ -98,8 +98,22 @@ export const EnhancedPivotTable: React.FC<EnhancedPivotTableProps> = ({
 
   const getRootColumnLength = () => columns[0].allowedValues.length * values.length;
 
-  const getHeader = () => (
-    <thead>
+  const getHeaderInternalClassName = (i: number, allowedValuesLength: number | undefined) => {
+    if (allowedValuesLength && (i + 1) % allowedValuesLength === 0) {
+      return 'pivotHeaderValue pivotHeaderInternal pivotHeaderSeparator'
+    }
+    return 'pivotHeaderValue pivotHeaderInternal'
+  }
+
+  const getHeader = () => {
+    let allowedValuesLength: number | undefined;
+    const rowsLength = rows.length
+
+    if (columns) {
+      allowedValuesLength = columns[0].allowedValues.length
+    }
+
+    return(<thead>
       {columns && (
         <>
           <tr>
@@ -111,7 +125,7 @@ export const EnhancedPivotTable: React.FC<EnhancedPivotTableProps> = ({
           <tr>
             <th colSpan={rows.length}>{' '}</th>
             {values.map((x, i) => (
-              <th key={i} style={{ textAlign: 'center' }} colSpan={columns[0].allowedValues.length}>
+              <th key={i} style={{ textAlign: 'center' }} className='pivotHeaderSeparator' colSpan={columns[0].allowedValues.length}>
                 {x.label || x.field}
               </th>
             ))}
@@ -124,18 +138,57 @@ export const EnhancedPivotTable: React.FC<EnhancedPivotTableProps> = ({
             {getColumnLabel(col, i)}
           </th>
         ))}
+        {!columns && cols.slice(rowsLength, 100).map((col, i) =>
+            <th key={`col-${i + rowsLength}`} className='pivotHeaderValue'>
+              {getColumnLabel(col, i + rowsLength)}
+            </th>)
+        }
         {columns &&
           values.flatMap(() => columns[0].allowedValues).map((x, i) => (
-            <th key={i} className='pivotHeaderValue pivotHeaderInternal' style={{ textAlign: 'center' }}>
+            <th key={i} className={getHeaderInternalClassName(i, allowedValuesLength)} style={{ textAlign: 'center' }}>
               {x}
             </th>
           ))}
       </tr>
     </thead>
-  );
+  )
+};
 
-  const getRowLine = (row: RowItem[], i: number) =>
-    row.map((item, y) => {
+interface LineClassParams {
+  baseClass: string;
+  item: { totalsLine?: boolean };
+  allowedValuesLength?: number;
+  i?: number;
+  rowsLength?: number;
+}
+
+const getLineClass = (
+  baseClass: LineClassParams['baseClass'],
+  item: LineClassParams['item'],
+  allowedValuesLength?: LineClassParams['allowedValuesLength'],
+  i?: LineClassParams['i'],
+  rowsLength?: LineClassParams['rowsLength']
+): string => {
+  const baseClassLocal = item.totalsLine ? `${baseClass} pivotSubtotal` : baseClass;
+  if (allowedValuesLength) {
+    const comparison = i - rowsLength + 1;
+    if (comparison % allowedValuesLength === 0) {
+      return `${baseClassLocal} pivotHeaderSeparator`;
+    }
+  }
+  return baseClassLocal;
+};
+
+  const getRowLine = (row: RowItem[], i: number) => {
+
+
+    const rowsLength = rows.length
+    let allowedValuesLength: number | undefined;
+    if (columns) {
+      allowedValuesLength = columns[0].allowedValues.length
+    }
+
+   return (row.map((item, y) => {
       if (item.type === 'header' && item.visible) {
         return (
           <th key={`th-${i}-${y}`} rowSpan={item.rowSpan} className='pivotRowHeader'>
@@ -143,9 +196,14 @@ export const EnhancedPivotTable: React.FC<EnhancedPivotTableProps> = ({
           </th>
         );
       } else if (item.type === 'value') {
-        return <td key={`td-${i}-${y}`} className='pivotValue'>{item.value}</td>;
+        if (allowedValuesLength) {
+          return <td key={`td-${i}-${y}`} className={getLineClass('pivotValue', item, allowedValuesLength, y, rowsLength)}>{item.value}</td>
+        } else {
+          return <td key={`td-${i}-${y}`} className={getLineClass('pivotValue', item)}>{item.value}</td>
+        }
       }
-    });
+    }))
+  };
 
   const getRows = () => (
     <tbody>
