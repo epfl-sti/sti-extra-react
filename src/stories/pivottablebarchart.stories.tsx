@@ -109,6 +109,46 @@ export const TwoDimensions: Story = {
   },
 }
 
+export const HideColumn: Story = {
+  args: {
+    data: testData,
+    rows: ['continent', 'currency_code', 'government', 'country'],
+    columnsLabels: ['Continent', 'Currency', 'Government', 'Country', 'Population Sum', 'Count'],
+    barLegendSteps: 10,
+    hideColumns: [2],
+    barsMaxValue: 100,
+    postprocessfn: (result: any) => ({
+      population: 100,
+      area: Math.round((result.population * 100) / (result.area || 1) / 1000),
+    }),
+    values: [
+      { field: 'population', aggregator: 'sum' },
+      { field: 'area', aggregator: 'sum' },
+    ],
+  },
+}
+
+export const HighlightColumn_EUR: Story = {
+  args: {
+    data: testData,
+    rows: ['continent', 'currency_code', 'government', 'country'],
+    columnsLabels: ['Continent', 'Currency', 'Government', 'Country', 'Population Sum', 'Count'],
+    barLegendSteps: 10,
+    hideColumns: [2],
+    highlightRows: ['EUR'],
+    barsMaxValue: 100,
+    postprocessfn: (result: any) => ({
+      population: 100,
+      area: Math.round((result.population * 100) / (result.area || 1) / 1000),
+    }),
+    values: [
+      { field: 'population', aggregator: 'sum' },
+      { field: 'area', aggregator: 'sum' },
+    ],
+  },
+}
+
+
 export const StackChart: Story = {
   args: {
     data: testData,

@@ -28,6 +28,8 @@ interface PivotTableBarChartProps {
   data: any[];
   filters?: any;
   height?: number | string;
+  hideColumns?: number[]
+  highlightRows: string[]
   maxHeight?: number | string;
   maxWidth?: number | string;
   multiStackSplit?: number;
@@ -59,6 +61,8 @@ export function PivotTableBarChart ({
   data,
   filters,
   height,
+  hideColumns,
+  highlightRows,
   maxHeight,
   maxWidth,
   multiStackSplit = 2,
@@ -116,6 +120,17 @@ export function PivotTableBarChart ({
   const getColsLength = () => showRanking 
     ? rows.length + 1
     : rows.length
+
+  const getHeaderClassName = (value: string) => {
+      if (!highlightRows) {
+        return 'pivotRowHeader'
+      }
+      if (highlightRows.includes(value)) {
+        return 'pivotRowHeader pivotRowHeaderHighlight'
+      }
+      return 'pivotRowHeader'
+    }
+  
 
   const getHeader = () =>
     <thead>
@@ -243,6 +258,13 @@ export function PivotTableBarChart ({
     return dataArray
   }
 
+  const getItemValue = (i: number, value: any) => {
+    if (hideColumns && hideColumns.includes(i + 1)) {
+      return ''
+    }
+    return value
+  }
+
   const getRowLine = (row: RowItem[], i: number) => {
     const headerItems = row.filter((x) => x.type === 'header');
     const popOverDataArray = getPopOverDataArray(headerItems as HeaderItem[], row);
@@ -252,9 +274,9 @@ export function PivotTableBarChart ({
           <th
             key={`th-${i}-${y}`}
             rowSpan={item.rowSpan}
-            className="pivotRowHeader"
+            className={getHeaderClassName(item.value)}
           >
-            {item.value}
+            {getItemValue(y, item.value)}
           </th>
         ) : null
       )
