@@ -3,7 +3,6 @@ import * as d3 from 'd3';
 
 const q = new PQueue({ concurrency: 150, autoStart: true });
 
-
 interface ChartData {
   width: number;
   x: number;
@@ -39,7 +38,7 @@ export function setD3BuilderConcurrency(concurrency: number): void {
  * - Gauge chart mode: Displays gauge-like bars with optional text values positioned differently.
  *
  * The function uses a queue (`q`) to manage asynchronous rendering and ensures a delay of 50ms
- * before invoking the callback to allow for rendering completion.
+ * before completing the task to allow for rendering completion.
  */
 export default function d3chartBuilder(
   svg: d3.Selection<SVGGElement, unknown, null, undefined>,
@@ -48,7 +47,7 @@ export default function d3chartBuilder(
   labelsSuffix: string = '',
   isGaugeChart: boolean = false
 ): void {
-  q.add(function (cb: () => void) {
+  q.add(() => new Promise<void>(resolve => {
     svg
       .selectAll<SVGRectElement, ChartData>('rect')
       .data(data)
@@ -91,6 +90,9 @@ export default function d3chartBuilder(
         .attr('fill', d => d.fontColor || 'white');
     }
 
-    setTimeout(cb, 50);
-  });
+    // Use proper Promise-based delay instead of direct callback
+    setTimeout(() => {
+      resolve();
+    }, 50);
+  }));
 }
