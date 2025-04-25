@@ -78,7 +78,9 @@ function getMostCommonSeparator(val: string): string {
     {} as Record<string, number>
   );
   
-  const sorted = soa(Object.entries(delimitersCount).map(([key, value]) => ({ key, value })), 'value', 'desc');
+  const sorted = Object.entries(delimitersCount)
+    .map(([key, value]) => ({ key, value }))
+    .sort((a, b) => b.value - a.value);
 
   // Deal with "," case
   if ((sorted[1] || {}).key === '","' && sorted[0].key === ',') {
