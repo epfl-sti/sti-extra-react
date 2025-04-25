@@ -1,4 +1,3 @@
-import soa from 'sort-objects-array';
 import { Aggregator } from './getAggregated';
 
 export function removeNewLines(val: string): string {
