@@ -16,15 +16,15 @@ const testData = {
     A: 83,
     B: 17,
   },
-  "Value 3": {
+  Value3: {
     A: 91,
     B: 9,
   },
-  "Value 4": {
+  Value4: {
     B: 89,
     A: 11,
   },
-  "Value 5": {
+  Value5: {
     B: 100,
   },
 };
@@ -66,6 +66,26 @@ export const ShowText: Story = {
     width: 800,
     height: 400,
     data: testData,
+    dimensions: ["B", "A"],
+    labels: ["B", "A"],
+    xylegend: {
+      x: "Test Horizontal Bar. X Axis",
+      y: "Test Horizontal Bar. X Axis",
+    },
+    stacked: true,
+    showText: true,
+    textSuffix: "%",
+    textColor: "#666",
+  },
+};
+
+
+export const DefineDataKeys: Story = {
+  args: {
+    width: 800,
+    height: 400,
+    data: testData,
+    dataKeys: ["Value3", "Value2", "Value4", "IgnoreMe"],
     dimensions: ["B", "A"],
     labels: ["B", "A"],
     xylegend: {

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 interface PlotlyHorizontalBoxplotProps {
   data?: object;
+  dataKeys?: string[];
   dimensions?: any[];
   labels?: any[];
   xylegend?: object;
@@ -19,6 +20,7 @@ interface PlotlyHorizontalBoxplotProps {
 
 export const HorizontalBoxplot: React.FC<PlotlyHorizontalBoxplotProps> = ({
   data,
+  dataKeys,
   dimensions,
   labels,
   xylegend,
@@ -34,6 +36,7 @@ export const HorizontalBoxplot: React.FC<PlotlyHorizontalBoxplotProps> = ({
     <PlotlyWrapper
       jsonData={getPlotlyHboxPlotObject({
         data,
+        dataKeys,
         dimensions,
         labels,
         xylegend,
@@ -53,6 +56,7 @@ export const HorizontalBoxplot: React.FC<PlotlyHorizontalBoxplotProps> = ({
 
 HorizontalBoxplot.propTypes = {
   data: PropTypes.object,
+  dataKeys: PropTypes.array,
   dimensions: PropTypes.array,
   labels: PropTypes.array,
   xylegend: PropTypes.object,

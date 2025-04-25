@@ -7,6 +7,7 @@ const defaultColors: string[] = [
 
 interface PlotlyHboxPlotObjectProps {
   data: { [key: string]: any };
+  dataKeys?: string[];
   dimensions: string[];
   xylegend: any;
   colors?: string[];
@@ -20,6 +21,7 @@ interface PlotlyHboxPlotObjectProps {
 export function getPlotlyHboxPlotObject({
   data,
   dimensions,
+  dataKeys,
   xylegend,
   colors,
   title,
@@ -28,8 +30,9 @@ export function getPlotlyHboxPlotObject({
 }: PlotlyHboxPlotObjectProps) {
   const colorsToUse: string[] = colors || defaultColors;
 
-  const plotlyData = Object.keys(data)
-    .filter((x) => data[x] && data[x][dimensions[0]])
+  const keys = dataKeys ? dataKeys.reverse() : Object.keys(data);
+
+  const plotlyData = keys.filter((x) => data[x] && data[x][dimensions[0]])
     .map((x, i) => ({
       x: data[x][dimensions[0]],
       marker: { color: colorsToUse[i] },
