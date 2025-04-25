@@ -74,6 +74,7 @@ export function PivotTableBarChart ({
   rowsLimit,
   showPopOver,
   showRanking,
+  showBarValues,
   tableClassName,
   values,
   width
@@ -187,6 +188,7 @@ export function PivotTableBarChart ({
             dimensions={valuesCols}
             height={barsHeight}
             colors={colors}
+            showBarValues={showBarValues}
             minValue={minValue}
             maxValue={maxValue}
           />
@@ -199,6 +201,7 @@ export function PivotTableBarChart ({
             dataElement={valuesObj}
             dimensions={valuesCols}
             height={barsHeight}
+            showBarValues={showBarValues}
             colors={colors}
             minValue={minValue}
             maxValue={maxValue}
@@ -216,6 +219,7 @@ export function PivotTableBarChart ({
               dataElement={valuesObj}
               dimensions={chunk}
               height={barsHeight}
+              showBarValues={showBarValues}
               colors={colorsChunks[index]}
               minValue={minValue}
               maxValue={maxValue}
