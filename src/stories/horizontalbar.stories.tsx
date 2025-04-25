@@ -85,7 +85,7 @@ export const DefineDataKeys: Story = {
     width: 800,
     height: 400,
     data: testData,
-    dataKeys: ["Value3", "Value2", "Value4"],
+    dataKeys: ["Value3", "Value2", "Value4", "IgnoreMe"],
     dimensions: ["B", "A"],
     labels: ["B", "A"],
     xylegend: {
