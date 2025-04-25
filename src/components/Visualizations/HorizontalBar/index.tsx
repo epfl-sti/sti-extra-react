@@ -65,6 +65,7 @@ export const HorizontalBar: React.FC<PlotlyHorizontalBarProps> = ({
 
 HorizontalBar.propTypes = {
   data: PropTypes.object,
+  dataKeys: PropTypes.array,
   dimensions: PropTypes.array,
   labels: PropTypes.array,
   xylegend: PropTypes.object,

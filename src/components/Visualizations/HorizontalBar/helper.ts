@@ -37,14 +37,12 @@ export function getPlotlyHBarObject({
   textColor,
 }: PlotlyHBarObjectProps) {
   const colorsToUse = colors || defaultColors;
-  console.log({data})
 
   const plotlyData = dimensions.map((dimension: any, i: number) => {
-    const keys = dataKeys ? dataKeys : Object.keys(data);
+    const keys = dataKeys ? dataKeys.reverse() : Object.keys(data);
     const yItems = keys.filter(
       (yItem) => data[yItem] && data[yItem][dimension]
     );
-    console.log({yItems})
     const baseTrace = {
       x: yItems.map((yItem) => data[yItem][dimension]),
       y: yItems,

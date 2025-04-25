@@ -7,6 +7,8 @@ const defaultColors: string[] = [
 
 export function getPlotlyHboxPlotGrouppedObject<T>({
   data,
+  dataKeys,
+  dataInnerKeys,
   dimensions,
   xylegend,
   colors,
@@ -16,6 +18,8 @@ export function getPlotlyHboxPlotGrouppedObject<T>({
   height
 }: {
   data: T;
+  dataKeys?: string[];
+  dataInnerKeys?: string[];
   dimensions: string[];
   xylegend: any;
   colors?: string[];
@@ -26,6 +30,7 @@ export function getPlotlyHboxPlotGrouppedObject<T>({
   width?: number;
   height?: number;
 }): { data: any[]; layout: any } {
+
   const colorsToUse: string[] = colors || defaultColors;
 
   const getDimensionValue = (outerlevel: keyof T, innerlevel: keyof T[keyof T]) =>
@@ -43,17 +48,20 @@ export function getPlotlyHboxPlotGrouppedObject<T>({
     return colorsToUse[idx];
   }
 
-  const plotlyData: any[] = Object.keys(data).map((outerlevel, i) => {
-    const y = Object.keys(data[outerlevel])
-      .reverse()
+  const keys = dataKeys ? dataKeys.reverse() : Object.keys(data);
+
+  const plotlyData: any[] = keys.filter((x) => data[x]).map((outerlevel, i) => {
+    const innerKeys = dataInnerKeys ? dataInnerKeys.reverse() : Object.keys(data[keys[0]]);
+    const y = innerKeys.filter(key => data[outerlevel][key])
       .map(innerlevel =>
         Array(getDimensionValue(outerlevel, innerlevel).length).fill(innerlevel)
       )
       .flat();
-    const x = Object.keys(data[outerlevel])
-      .reverse()
+
+    const x = innerKeys.filter(key => data[outerlevel][key])
       .map(innerlevel => getDimensionValue(outerlevel, innerlevel))
       .flat();
+
     return {
       x,
       y,

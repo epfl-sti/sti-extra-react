@@ -4,6 +4,8 @@ import { getPlotlyHboxPlotGrouppedObject } from './plotlyHorizontalBoxplotGroupe
 
 interface PlotlyHorizontalBoxplotProps {
   data?: object;
+  dataKeys?: string[];
+  dataInnerKeys?: string[];
   dimensions?: any[];
   labels?: any[];
   xylegend?: object;
@@ -19,6 +21,8 @@ interface PlotlyHorizontalBoxplotProps {
 
 export const HorizontalBoxplotGrouped: React.FC<PlotlyHorizontalBoxplotProps> = ({
   data,
+  dataKeys,
+  dataInnerKeys,
   dimensions,
   labels,
   xylegend,
@@ -35,6 +39,8 @@ export const HorizontalBoxplotGrouped: React.FC<PlotlyHorizontalBoxplotProps> = 
     <PlotlyWrapper
       jsonData={getPlotlyHboxPlotGrouppedObject({
         data,
+        dataKeys,
+        dataInnerKeys,
         dimensions,
         labels,
         xylegend,
