@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 interface PlotlyHorizontalBarProps {
   data: object;
+  dataKeys?: string[];
   dimensions?: any[];
   labels?: any[];
   xylegend?: object;
@@ -22,6 +23,7 @@ interface PlotlyHorizontalBarProps {
 
 export const HorizontalBar: React.FC<PlotlyHorizontalBarProps> = ({
   data,
+  dataKeys,
   dimensions,
   labels,
   xylegend,
@@ -40,6 +42,7 @@ export const HorizontalBar: React.FC<PlotlyHorizontalBarProps> = ({
     <PlotlyWrapper
       jsonData={getPlotlyHBarObject({
         data,
+        dataKeys,
         dimensions,
         labels,
         xylegend,

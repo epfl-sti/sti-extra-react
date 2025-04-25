@@ -7,6 +7,7 @@ const defaultColors = [
 
 interface PlotlyHBarObjectProps {
   data: any;
+  dataKeys?: string[];
   dimensions: any[];
   labels: any[];
   xylegend: any;
@@ -22,6 +23,7 @@ interface PlotlyHBarObjectProps {
 
 export function getPlotlyHBarObject({
   data,
+  dataKeys,
   dimensions,
   labels,
   xylegend,
@@ -35,11 +37,14 @@ export function getPlotlyHBarObject({
   textColor,
 }: PlotlyHBarObjectProps) {
   const colorsToUse = colors || defaultColors;
+  console.log({data})
 
   const plotlyData = dimensions.map((dimension: any, i: number) => {
-    const yItems = Object.keys(data).filter(
+    const keys = dataKeys ? dataKeys : Object.keys(data);
+    const yItems = keys.filter(
       (yItem) => data[yItem] && data[yItem][dimension]
     );
+    console.log({yItems})
     const baseTrace = {
       x: yItems.map((yItem) => data[yItem][dimension]),
       y: yItems,
