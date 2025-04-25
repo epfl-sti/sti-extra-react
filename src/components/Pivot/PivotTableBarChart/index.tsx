@@ -56,6 +56,7 @@ export function PivotTableBarChart ({
   barsHeight = 15,
   barsMaxValue,
   barsMinValue = 0,
+  barValuesSuffix,
   columnsLabels,
   colors,
   data,
@@ -189,6 +190,7 @@ export function PivotTableBarChart ({
             height={barsHeight}
             colors={colors}
             showBarValues={showBarValues}
+            barValuesSuffix={barValuesSuffix}
             minValue={minValue}
             maxValue={maxValue}
           />
@@ -202,6 +204,7 @@ export function PivotTableBarChart ({
             dimensions={valuesCols}
             height={barsHeight}
             showBarValues={showBarValues}
+            barValuesSuffix={barValuesSuffix}
             colors={colors}
             minValue={minValue}
             maxValue={maxValue}
@@ -220,6 +223,7 @@ export function PivotTableBarChart ({
               dimensions={chunk}
               height={barsHeight}
               showBarValues={showBarValues}
+              barValuesSuffix={barValuesSuffix}
               colors={colorsChunks[index]}
               minValue={minValue}
               maxValue={maxValue}
