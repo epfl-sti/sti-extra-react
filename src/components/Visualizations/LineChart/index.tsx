@@ -19,6 +19,7 @@ interface PlotlyLineChartPlotProps {
   hideLegend?: boolean;
   backgroundColor?: string;
   annotations?: any[];
+  dateAnnotations?: any[];
   bottomLegend?: string;
   plotlyCdnSource?: string;
 }
@@ -39,6 +40,7 @@ export const LineChartPlot: React.FC<PlotlyLineChartPlotProps> = ({
   hideLegend,
   backgroundColor,
   annotations,
+  dateAnnotations,
   bottomLegend,
   plotlyCdnSource,
 }) => {
@@ -60,6 +62,7 @@ export const LineChartPlot: React.FC<PlotlyLineChartPlotProps> = ({
         defaultlegend,
         backgroundColor,
         annotations,
+        dateAnnotations
       })}
       bottomLegend={bottomLegend}
       plotlyCdnSource={plotlyCdnSource}
@@ -84,6 +87,7 @@ LineChartPlot.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
   annotations: PropTypes.array,
+  dateAnnotations: PropTypes.array,
   bottomLegend: PropTypes.string,
   plotlyCdnSource: PropTypes.string,
 };
