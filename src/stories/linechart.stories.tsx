@@ -100,7 +100,7 @@ export const Annotation: Story = {
         date: '2021-01-01',
         x: 10, 
         y: 0,
-        text: 'Q3 Start',
+        text: 'Q1 Start',
         arrowhead: 4
       }
     ],
