@@ -48,9 +48,10 @@ export function getPlotlyHboxPlotGrouppedObject<T>({
     return colorsToUse[idx];
   }
 
-  const keys = dataKeys ? dataKeys.reverse() : Object.keys(data);
+  const originalKeys = Object.keys(data);
+  const keys = dataKeys ? dataKeys.reverse().filter((x) => originalKeys.includes(String(x))) : originalKeys;
 
-  const plotlyData: any[] = keys.filter((x) => data[x]).map((outerlevel, i) => {
+  const plotlyData: any[] = keys.map((outerlevel, i) => {
     const innerKeys = dataInnerKeys ? dataInnerKeys.reverse() : Object.keys(data[keys[0]]);
     const y = innerKeys.filter(key => data[outerlevel][key])
       .map(innerlevel =>
