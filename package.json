@@ -1,6 +1,6 @@
 {
   "name": "@epfl-sti/sti-extra-react",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "private": false,
   "description": "This repository contains a React Storybook UI Components library that serves a complement library to the core epfl elements react library.",
   "homepage": "https://github.com/epfl-sti/sti-extra-react",
