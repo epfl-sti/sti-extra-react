@@ -1,6 +1,28 @@
 import React from 'react';
 import './plotlys.css';
-import Plot from 'react-plotly.js';
+
+// Import plotly core
+import Plotly from 'plotly.js/lib/core';
+
+// Import only the modules you need based on your chart types
+import * as choropleth from 'plotly.js/lib/choropleth';
+import * as bar from 'plotly.js/lib/bar';
+import * as pie from 'plotly.js/lib/pie';
+import * as scatter from 'plotly.js/lib/scatter';
+import * as box from 'plotly.js/lib/box';
+
+// Register the components
+Plotly.register([
+  choropleth,
+  bar,
+  pie,
+  scatter,
+  box
+]);
+
+// Use the factory method to create the Plot component
+import createPlotlyComponent from 'react-plotly.js/factory';
+const Plot = createPlotlyComponent(Plotly);
 
 interface PlotlyWrapperProps {
   jsonData: {layout: any, data: any};
@@ -9,46 +31,29 @@ interface PlotlyWrapperProps {
   plotlyCdnSource?: string;
 }
 
-
 const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
   jsonData,
   bottomLegend,
   relayOutHandler,
 }) => {
-
   const renderPlot = () => {
-
     const { data, layout } = jsonData;
-
+    
     const getPlot = () => {
-
-      if ((Plot as any).default !== undefined) {
-        //@ts-expect-error import quirck
-        return <Plot.default
-        data={data}
-        layout={layout}
-        onRelayout={(e: any) => {
-          if (relayOutHandler) {
-            relayOutHandler(e);
-          }
-        }}
-        config={{ displayModeBar: false }}
-      />
-      } else {
-        return <Plot
-        data={data}
-        layout={layout}
-        onRelayout={(e: any) => {
-          if (relayOutHandler) {
-            relayOutHandler(e);
-          }
-        }}
-        config={{ displayModeBar: false }}
-      />
-
-      }
-
-      
+      // The custom Plot component created with createPlotlyComponent
+      // doesn't need the .default check anymore
+      return (
+        <Plot
+          data={data}
+          layout={layout}
+          onRelayout={(e: any) => {
+            if (relayOutHandler) {
+              relayOutHandler(e);
+            }
+          }}
+          config={{ displayModeBar: false }}
+        />
+      );
     };
 
     return bottomLegend ? (
@@ -67,7 +72,7 @@ const PlotlyWrapper: React.FC<PlotlyWrapperProps> = ({
 
   return (
     <div>
-      {jsonData  && renderPlot()}
+      {jsonData && renderPlot()}
     </div>
   );
 };

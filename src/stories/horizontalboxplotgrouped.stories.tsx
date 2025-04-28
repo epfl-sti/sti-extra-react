@@ -77,3 +77,20 @@ export const DefineDataInnerKeys: Story = {
     title: "Population by Continent & Language ",
   },
 };
+
+export const DefineDataInnerDataKeys: Story = {
+  args: {
+    data: {
+      en: getDataByContinent("en"),
+      es: getDataByContinent("es"),
+      fr: getDataByContinent("fr"),
+    },
+    dataKeys: ["en", "es", "ignoreMe"],
+    dataInnerKeys: ["EU", "SA", "ignoreMe"],
+    dimensions: ["population"],
+    width: 800,
+    height: 500,
+    xylegend: { x: "population", y: "continent" },
+    title: "Population by Continent & Language",
+  },
+};
