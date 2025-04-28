@@ -10,7 +10,6 @@ export { HorizontalBar } from './components/Visualizations/HorizontalBar'
 export { ChoroplethMap } from './components/Visualizations/ChoroplethMap'
 export { PieChart } from './components/Visualizations/PieChart/'
 export { ScatterPlot }  from './components/Visualizations/ScatterPlot/'
-export { TimeSeriesPlot } from './components/Visualizations/TimeSeries'
 export { VerticalBar } from './components/Visualizations/VerticalBar'
 
 // XLS
